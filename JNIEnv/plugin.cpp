@@ -258,7 +258,10 @@ PLUG_EXPORT void CBADDRINFO(CBTYPE cbType, PLUG_CB_ADDRINFO* info)
 static bool cbCommand(int argc, char* argv[])
 {
     if(argc < 2)
+    {
+        _plugin_logputs("Usage (inside a function that has a JNIEnv* as argument): JNIEnv [arg.get(0)]");
         return false;
+    }
     duint start = Eval(argv[1]);
     if(!DbgMemIsValidReadPtr(start))
         return false;
